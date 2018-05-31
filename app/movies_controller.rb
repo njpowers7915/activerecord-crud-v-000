@@ -24,7 +24,7 @@ end
 
 def can_be_created_in_a_block(attributes={})
   Movie.create do |m|
-    Movie.new(m)
+    Movie[m] = attribute
   end
 end
 
