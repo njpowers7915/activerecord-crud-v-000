@@ -86,7 +86,7 @@ describe 'Movie' do
       #  expect(movie.title).to eq("The Room")
       #  expect(movie.release_date).to eq(2003)
       #end
-   #end
+   end
 
     context 'reading' do
       before do
