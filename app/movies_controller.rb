@@ -22,9 +22,9 @@ def can_be_created_with_a_hash_of_attributes
   movie = Movie.create(attributes)
 end
 
-def can_be_created_in_a_block(attributes={})
+def can_be_created_in_a_block(args = {})
   Movie.create do |m|
-    Movie[m] = attribute
+    m = Movie.new
   end
 end
 
@@ -41,30 +41,27 @@ def can_get_size_of_the_database
 end
 
 def can_find_the_first_item_from_the_database_using_id
-  Movie.find(1).title
+  Movie.first.title
 end
 
 def can_find_by_multiple_attributes
   # title == "Title"
   # release_date == 2000
   # director == "Me"
-  Movie.find_by(title: "Title")
-  Movie.find_by(release_date: 2000)
-  Movie.find_by(director: "Me")
+  movie = Movie.find_by(title: "Title", release_date: 2000, director: "Me")
 end
 
 def can_find_using_where_clause_and_be_sorted
   # For this test return all movies released after 2002 and ordered by 
   # release date descending
-  ordered_movies = Movie.order(:release_date).reverse_order
-  ordered_movies.where("release_date > 2002")
+  movies = Movie.where("release_date > ?", 2002).order('release_date DESC')
 end
 
 def can_be_found_updated_and_saved
   # Updtate the title "Awesome Flick" to "Even Awesomer Flick"
   Movie.create(title: "Awesome Flick")
   movie = Movie.find_by(title: "Awesome Flick")
-  movie.title = "Even Awesomer Flick"
+  movie.update(title: "Even Awesomer Flick")
   movie.save
 end
 
